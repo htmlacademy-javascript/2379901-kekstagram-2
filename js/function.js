@@ -1,22 +1,21 @@
-function checkingLengthString(string, length) {
-  if (string.length <= length) {
-    return true;
+const checkingLengthString = (string, lenght) => string.length <= lenght;
+
+
+const definitionPalindrome = (string) => {
+  const normalizeString = string.replaceAll(' ', '').toLowerCase();
+  let reverseString = normalizeString.split('').reverse().join('');
+  return reverseString === normalizeString;
+};
+
+const extractingNumbers = (string) => {
+  let result = '';
+
+  string = string.toString();
+
+  for (let i = 0; i <= string.length-1; i++) {
+    if (Number.isNaN(parseInt(string[i], 10)) === false) {
+      result += string[i];
+    }
   }
-  else {
-    return false;
-  }
-}
-
-
-function definitionPalindrome(string) {
-  string = string.replaceAll(' ', '');
-  string = string.toLowerCase();
-
-  let reversed = '';
-
-  for (let i = string.length - 1; i >= 0; i--) {
-    reversed += string[i];
-  }
-
-  return string === reversed ? 'Палиндром' : 'Не палиндром';
-}
+  return result === '' ? NaN : Number(result);
+};
