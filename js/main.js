@@ -57,22 +57,20 @@ const createComment = () => {
 
 const numberComment = getRandomInteger(0, 30);
 const numberLike = getRandomInteger(15, 200);
+const arrayLength = 25;
 
-const createPhoto = () => {
-  let id = 1;
-
-  return () => {
-    const photo = {};
-    photo.id = id;
-    photo.url = `photos/${id}.jpg`;
-    photo.description = `Фото №${id}`;
-    photo.likes = numberLike();
-    photo.comment = Array.from({length : numberComment()}, createComment());
-    id++;
-    return photo;
+const createPhoto = (_, index) => {
+  const photo = {
+    id: index + 1,
+    url: `photos/${index + 1}.jpg`,
+    description: `Фото №${index + 1}`,
+    likes: numberLike(),
+    comment: Array.from({length : numberComment()}, createComment())
   };
+
+  return photo;
 };
 
-const photoArray = Array.from({length : 25}, createPhoto());
+const photoArray = Array.from({length : arrayLength}, createPhoto);
 
 console.log(photoArray);
