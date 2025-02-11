@@ -17,10 +17,7 @@ const extractingNumbers = (string) => {
 
 
 const parseTime = (timeStr) => {
-  const [hours, minutes] = timeStr.split(':').map(Number);
 
-  return hours * 60 + minutes;
-};
 
 const isMeetingWithinWorkHours = (workStart, workEnd, meetingStart, meetingDuration) => {
 
@@ -32,4 +29,4 @@ const isMeetingWithinWorkHours = (workStart, workEnd, meetingStart, meetingDurat
 
   //Проверяем, что встреча находится в рамках рабочего времени
   return workStartMinutes <= meetingStartMinutes && meetingEndMinutes <= workEndMinutes;
-};
+
