@@ -18,8 +18,6 @@ const createThumbnail = (photo) => {
 
 const fragment = document.createDocumentFragment();
 
-console.log(createPhoto);
-
 createPhoto.forEach((photo) => {
   const thumbnail = createThumbnail(photo);
   fragment.appendChild(thumbnail);
