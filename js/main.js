@@ -1,3 +1,1 @@
-import './data.js';
-import './pedestal.js';
-
+import "./thumbnails.js"

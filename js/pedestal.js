@@ -2,38 +2,31 @@ import {getRandomInteger} from './util.js';
 import {MESSAGES} from './data.js';
 import {NAMES} from './data.js';
 
-//Сообщение коментария
-const createComment = (_, index) => {
-  const indexMessage = getRandomInteger(0, MESSAGES.length - 1);
-  const indexName = getRandomInteger(0, NAMES.length - 1);
-  const idAvatar = getRandomInteger(1, 6);
-
-  const comment = {
-    id: index + 1,
-    avatar: `img/avatar-${idAvatar()}.svg`,
-    message: `${MESSAGES[indexMessage()]}. ${MESSAGES[indexMessage()]}`,
-    name: `${NAMES[indexName()]}`
-  };
-
-  return comment;
-};
+// Генерация одного комментария
+const createComment = (id) => ({
+  id: id + 1,
+  avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
+  message: MESSAGES[getRandomInteger(0, MESSAGES.length - 1)],
+  name: NAMES[getRandomInteger(0, NAMES.length - 1)]
+});
 
 const numberComment = getRandomInteger(0, 30);
 const numberLike = getRandomInteger(15, 200);
-const arrayLength = 25;
+const quantityPosts = 25;
 
-const createPhoto = (_, index) => {
-  const photo = {
-    id: index + 1,
-    url: 'photos/${index + 1}.jpg',
-    description: 'Фото №${index + 1}',
-    likes: numberLike(),
-    comment: Array.from({length : numberComment()}, createComment)
-  };
+// Генерация одного фото
+const createPhoto = (id) => ({
+  id: id + 1,
+  url: `photos/${id + 1}.jpg`,
+  description: `Фото №${id + 1}`,
+  likes: numberLike,
+  comments: Array.from(
+    { length: numberComment }, 
+    (_, commentIndex) => createComment(commentIndex)
+  )
+});
 
-  return photo;
-};
 
-const photoArray = Array.from({length : arrayLength}, createPhoto);
+const getPhotosList = Array.from({ length: quantityPosts }, (_, index) => createPhoto(index));
 
-console.log(photoArray);
+export {getPhotosList as createPhoto};
