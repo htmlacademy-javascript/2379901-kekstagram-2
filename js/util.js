@@ -13,4 +13,4 @@ const getRandomInteger = (a, b) => {
   };
 };
 
-export {getRandomInteger};
+export { getRandomInteger };

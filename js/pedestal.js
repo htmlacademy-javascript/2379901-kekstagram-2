@@ -1,6 +1,5 @@
 import {getRandomInteger} from './util.js';
-import {MESSAGES} from './data.js';
-import {NAMES} from './data.js';
+import {MESSAGES, NAMES} from './data.js';
 
 // Генерация одного комментария
 const createComment = (id) => ({
@@ -12,21 +11,22 @@ const createComment = (id) => ({
 
 const numberComment = getRandomInteger(0, 30);
 const numberLike = getRandomInteger(15, 200);
-const quantityPosts = 25;
+const QUANTITY_POSTS = 25;
 
 // Генерация одного фото
-const createPhoto = (id) => ({
+const createPhotoItem = (id) => ({
+  
   id: id + 1,
   url: `photos/${id + 1}.jpg`,
   description: `Фото №${id + 1}`,
-  likes: numberLike,
+  likes: numberLike(),
   comments: Array.from(
-    { length: numberComment }, 
+    { length: numberComment() }, 
     (_, commentIndex) => createComment(commentIndex)
   )
 });
 
 
-const getPhotosList = Array.from({ length: quantityPosts }, (_, index) => createPhoto(index));
+const createPhoto = Array.from({ length: QUANTITY_POSTS }, (_, index) => createPhotoItem(index));
 
-export {getPhotosList as createPhoto};
+export { createPhoto };
