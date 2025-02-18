@@ -1,7 +1,8 @@
 import { createPhoto } from "./pedestal.js";
+import { showBigPhoto } from "./open-big-pictures.js";
 
 const template = document.querySelector('#picture').content.querySelector('.picture');
-const PicturesContainer = document.querySelector('.pictures');
+const thumbnailsContainer = document.querySelector('.pictures');
 
 const createThumbnail = (photo) => {
   const thumbnail = template.cloneNode(true);
@@ -16,11 +17,20 @@ const createThumbnail = (photo) => {
   return thumbnail;
 };
 
-const fragment = document.createDocumentFragment();
+function initThumbnails () {
+  const fragment = document.createDocumentFragment();
 
-createPhoto.forEach((photo) => {
-  const thumbnail = createThumbnail(photo);
-  fragment.appendChild(thumbnail);
-});
+  createPhoto.forEach((photo) => {
+    const thumbnail = createThumbnail(photo);
+    thumbnail.addEventListener('click', (evt) => {
+      evt.preventDefault();
+      showBigPhoto(photo);
+    });
+    fragment.appendChild(thumbnail);
+  });
 
-PicturesContainer.appendChild(fragment);
+  thumbnailsContainer.appendChild(fragment);
+};
+
+export { initThumbnails };
+
