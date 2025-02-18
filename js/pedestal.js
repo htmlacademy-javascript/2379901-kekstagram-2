@@ -26,7 +26,6 @@ const createPhotoItem = (id) => ({
   )
 });
 
-
 const createPhoto = Array.from({ length: QUANTITY_POSTS }, (_, index) => createPhotoItem(index));
 
 export { createPhoto };
