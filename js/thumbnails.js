@@ -1,4 +1,5 @@
 import { createPhoto } from "./pedestal.js";
+import { showBigPhoto } from "./open-big-pictures.js";
 
 const template = document.querySelector('#picture').content.querySelector('.picture');
 const thumbnailsContainer = document.querySelector('.pictures');
@@ -21,6 +22,10 @@ function initThumbnails () {
 
   createPhoto.forEach((photo) => {
     const thumbnail = createThumbnail(photo);
+    thumbnail.addEventListener('click', (evt) => {
+      evt.preventDefault();
+      showBigPhoto(photo);
+    });
     fragment.appendChild(thumbnail);
   });
 
