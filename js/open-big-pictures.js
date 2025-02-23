@@ -1,4 +1,4 @@
-import { isEscEvent } from "./util.js";
+import { isEscEvent } from './util.js';
 
 const COMMENTS_PER_PORTION = 5;
 let currentComments = [];
@@ -27,7 +27,7 @@ const createComment = (comment) => {
 const renderCommentsPortion = () => {
   const fragment = document.createDocumentFragment();
   const nextComments = currentComments.slice(commentsShown, commentsShown + COMMENTS_PER_PORTION);
-  
+
   nextComments.forEach((comment) => {
     fragment.appendChild(createComment(comment));
   });
@@ -36,13 +36,19 @@ const renderCommentsPortion = () => {
   commentsShown += nextComments.length;
 
   commentCountElement.innerHTML = `
-    ${commentsShown} из <span class="comments-count">${currentComments.length}</span> комментариев
-  `;
+      ${commentsShown} из <span class="comments-count">${currentComments.length}</span> комментариев
+    `;
 
   commentsLoader.classList.toggle('hidden', commentsShown >= currentComments.length);
 };
 
 const onCommentsLoaderClick = () => renderCommentsPortion();
+
+const closeBigPhoto = () => {
+  bigPhoto.classList.add('hidden');
+  body.classList.remove('modal-open');
+  commentsLoader.removeEventListener('click', onCommentsLoaderClick);
+};
 
 const showComments = (comments) => {
   currentComments = comments;
@@ -59,12 +65,6 @@ const onCloseEsc = (evt) => {
     evt.preventDefault();
     closeBigPhoto();
   }
-};
-
-const closeBigPhoto = () => {
-  bigPhoto.classList.add('hidden');
-  body.classList.remove('modal-open');
-  commentsLoader.removeEventListener('click', onCommentsLoaderClick);
 };
 
 const setupCloseButtonHandler = () => {

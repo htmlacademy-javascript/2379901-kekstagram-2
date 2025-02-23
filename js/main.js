@@ -1,8 +1,8 @@
-import { initThumbnails } from "./thumbnails.js"
-import { generatePhotos } from "./pedestal.js"
+import { initThumbnails } from './thumbnails.js';
+import { generatePhotos } from './pedestal.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-    const photos = generatePhotos();
+  const photos = generatePhotos();
 
-    initThumbnails(photos);
+  initThumbnails(photos);
 });

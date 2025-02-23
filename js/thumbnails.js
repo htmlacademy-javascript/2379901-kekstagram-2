@@ -1,4 +1,4 @@
-import { showBigPhoto } from "./open-big-pictures.js";
+import { showBigPhoto } from './open-big-pictures.js';
 
 const template = document.querySelector('#picture').content.querySelector('.picture');
 const thumbnailsContainer = document.querySelector('.pictures');
@@ -29,7 +29,7 @@ function initThumbnails (photos) {
   });
 
   thumbnailsContainer.appendChild(fragment);
-};
+}
 
 export { initThumbnails };
 

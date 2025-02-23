@@ -14,19 +14,17 @@ const QUANTITY_POSTS = 25;
 
 // Генерация одного фото
 const createPhotoItem = (id) => ({
-  
+
   id: id + 1,
   url: `photos/${id + 1}.jpg`,
   description: `Фото №${id + 1}`,
   likes: getNumberLike(),
   comments: Array.from(
-    { length: getRandomInteger(0, 30) }, 
+    { length: getRandomInteger(0, 30) },
     (_, commentIndex) => createComment(commentIndex)
   )
 });
 
-const generatePhotos = (count = 25) => {
-  return Array.from({ length: count }, (_, index) => createPhotoItem(index));
-};
+const generatePhotos = () => Array.from({ length: QUANTITY_POSTS }, (_, index) => createPhotoItem(index));
 
 export { generatePhotos };
