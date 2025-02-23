@@ -9,7 +9,6 @@ const createComment = (id) => ({
   name: NAMES[getRandomInteger(0, NAMES.length - 1)]
 });
 
-const getNumberComment = () => getRandomInteger(0, 30);
 const getNumberLike = () => getRandomInteger(15, 200);
 const QUANTITY_POSTS = 25;
 
@@ -21,11 +20,13 @@ const createPhotoItem = (id) => ({
   description: `Фото №${id + 1}`,
   likes: getNumberLike(),
   comments: Array.from(
-    { length: getNumberComment() }, 
+    { length: getRandomInteger(0, 30) }, 
     (_, commentIndex) => createComment(commentIndex)
   )
 });
 
-const createPhoto = Array.from({ length: QUANTITY_POSTS }, (_, index) => createPhotoItem(index));
+const generatePhotos = (count = 25) => {
+  return Array.from({ length: count }, (_, index) => createPhotoItem(index));
+};
 
-export { createPhoto };
+export { generatePhotos };

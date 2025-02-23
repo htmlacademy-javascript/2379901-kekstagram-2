@@ -35,7 +35,7 @@ const showBigPhoto = (thumbnail) => {
     bigPhoto.querySelector('.comments-loader').classList.add('hidden');
 
     bigPhoto.classList.remove('hidden');
-    onCloseBigPhoto();
+    setupCloseButtonHandler();
 };
 
 const clearCommentList = () => {
@@ -55,7 +55,7 @@ const closeBigPhoto = () => {
     body.classList.remove('modal-open');
 };
 
-const onCloseBigPhoto = () => {
+const setupCloseButtonHandler = () => {
     closeButton.addEventListener('click', () => {
         closeBigPhoto();
         clearCommentList();
