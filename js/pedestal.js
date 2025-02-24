@@ -9,23 +9,22 @@ const createComment = (id) => ({
   name: NAMES[getRandomInteger(0, NAMES.length - 1)]
 });
 
-const getNumberComment = () => getRandomInteger(0, 30);
 const getNumberLike = () => getRandomInteger(15, 200);
 const QUANTITY_POSTS = 25;
 
 // Генерация одного фото
 const createPhotoItem = (id) => ({
-  
+
   id: id + 1,
   url: `photos/${id + 1}.jpg`,
   description: `Фото №${id + 1}`,
   likes: getNumberLike(),
   comments: Array.from(
-    { length: getNumberComment() }, 
+    { length: getRandomInteger(0, 30) },
     (_, commentIndex) => createComment(commentIndex)
   )
 });
 
-const createPhoto = Array.from({ length: QUANTITY_POSTS }, (_, index) => createPhotoItem(index));
+const generatePhotos = () => Array.from({ length: QUANTITY_POSTS }, (_, index) => createPhotoItem(index));
 
-export { createPhoto };
+export { generatePhotos };

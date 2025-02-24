@@ -1,6 +1,8 @@
-import { initThumbnails } from "./thumbnails.js";
-import { showBigPhoto, onCloseEsc } from "./open-big-pictures.js";
+import { initThumbnails } from './thumbnails.js';
+import { generatePhotos } from './pedestal.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-    initThumbnails();
+  const photos = generatePhotos();
+
+  initThumbnails(photos);
 });
